@@ -8,7 +8,7 @@ register_matplotlib_converters()
 df = pd.read_csv("fcc-forum-pageviews.csv", index_col=0, parse_dates = True, names=["date","views"], header=0)
 
 # Clean data
-df = df.drop(df[(df['views'] > df['views'].quantile(0.975)) |(df['views'] < df['views'].quantile(0.025))].index, inplace=True)
+df = df.drop(df[(df['views'] > df['views'].quantile(0.975)) |(df['views'] < df['views'].quantile(0.025))].index)
 
 
 def draw_line_plot():
