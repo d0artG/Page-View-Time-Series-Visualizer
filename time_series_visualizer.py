@@ -48,29 +48,17 @@ def draw_box_plot():
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
 
     # Draw box plots (using Seaborn)
-
-
-
-
-
-    # Save image and return fig (don't change this part)
-    fig.savefig('box_plot.png')
-    return fig
-
-
-def draw_box_plot():
-    # Prepare data for box plots (this part is done!)
-    df_box = df.copy()
-    df_box.reset_index(inplace=True)
-    df_box['year'] = [d.year for d in df_box.date]
-    df_box['month'] = [d.strftime('%b') for d in df_box.date]
-
-    # Draw box plots (using Seaborn)
-
-
-
-
-
+    month_order=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    fig,ax=plt.subplots(nrows=1,ncols=2,figsize=(15,6))
+    sns.boxplot(data=df_box, x="year", y="views", ax=ax[0], palette="pastel")
+    ax[0].set_xlabel("Year")
+    ax[0].set_ylabel("Average Page Views")
+    ax[0].set_title("Year-wise Box Plot (Trend)")
+    sns.boxplot(data=df_box, x="month", y="views", order=month_order, ax=ax[1], palette="pastel")
+    ax[1].set_xlabel("Month")
+    ax[1].set_ylabel("Average Page Views")
+    ax[1].set_title("Month-wise Box Plot (Seasonality)")
+    
     # Save image and return fig (don't change this part)
     fig.savefig('box_plot.png')
     return fig
